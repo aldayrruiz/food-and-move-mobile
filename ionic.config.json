@@ -1,0 +1,7 @@
+{
+  "name": "Food And Move",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
