@@ -1,0 +1,30 @@
+ion-content {
+  --padding-top: 20%;
+}
+
+.forgot-password-div {
+  font-weight: 600;
+  padding-bottom: 3px;
+  padding-top: 9px;
+  text-align: center;
+}
+
+.forgot-password {
+  border-radius: 4px;
+  color: #eb445a;
+  display: inline-block;
+  outline: 0;
+  position: relative;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: inherit;
+  font-weight: inherit;
+  padding: 0;
+  text-align: left;
+  border: 0;
+}
+
+ion-checkbox {
+  --size: 14px;
+}

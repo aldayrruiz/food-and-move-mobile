@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <div style="text-align: center">
+        <img width="100px" src="assets/background/icon.png" alt="logo" />
+      </div>
+
+      <form (ngSubmit)="login()" [formGroup]="credentials">
+        <!-- Phone -->
+        <ion-item>
+          <ion-input type="phone" placeholder="Teléfono" formControlName="phone"></ion-input>
+        </ion-item>
+        <div *ngIf="(phone?.dirty || phone?.touched) && phone?.errors" class="errors">
+          <span *ngIf="phone?.errors?.['required']">El teléfono es necesario</span>
+          <span *ngIf="phone?.errors?.['valid']">El teléfono es invalido</span>
+        </div>
+        <!-- Password -->
+        <ion-item>
+          <app-show-hide-password>
+            <ion-input type="password" placeholder="Contraseña" formControlName="password">
+            </ion-input>
+          </app-show-hide-password>
+        </ion-item>
+        <div *ngIf="(password?.dirty || password?.touched) && password?.errors" class="errors">
+          <span *ngIf="password?.errors?.['required']">La contraseña es necesaria</span>
+          <!-- <span *ngIf="password?.errors?.['minlength']">La contraseña debe ser como mínimo de 6 caracteres</span> -->
+        </div>
+        <!-- <ion-item lines="none" style="text-align: right">
+          <ion-label style="font-size: 14px">Recordar phone</ion-label>
+          <ion-checkbox formControlName="rememberPhone" style="margin-right: 2px" slot="end"></ion-checkbox>
+        </ion-item> -->
+        <ion-button class="ion-margin-vertical" color="danger" type="submit" expand="block"
+          [disabled]="!credentials.valid">
+          Iniciar sesión
+        </ion-button>
+      </form>
+      <div class="forgot-password-div">
+        <button routerLink="../recover-password" class="forgot-password">
+          ¿Has olvidado tu contraseña?
+        </button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
