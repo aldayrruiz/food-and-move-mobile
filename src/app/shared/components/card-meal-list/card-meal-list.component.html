@@ -1,0 +1,14 @@
+<ion-card color="secondary">
+  <ion-card-header>
+    <ion-card-title class="card-header-title">
+      <ion-img class="card-icon-header" [src]="iconSrc"> </ion-img>
+      {{ title }}
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <!-- List of meals -->
+    <ion-button *ngFor="let food of foods" color="tertiary" (click)="goToMeal(food)">
+      {{ food.title }}
+    </ion-button>
+  </ion-card-content>
+</ion-card>

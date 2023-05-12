@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Network } from '@capacitor/network';
 import { AuthService } from '@core/services/api/auth.service';
 import { ErrorMessageService } from '@core/services/error/error-message.service';
-import { StorageService } from '@core/services/storage/storage.service';
+import { RouterService } from '@core/services/router/router.service';
 import { LoadingService } from '@core/services/view/loading.service';
 import { AlertController } from '@ionic/angular';
-import { emailValidators, passwordValidators } from '@utils/validators';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -25,8 +23,7 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private loadingSrv: LoadingService,
     private fb: FormBuilder,
-    private router: Router,
-    private storageService: StorageService
+    private routerService: RouterService
   ) {}
 
   get phone() {
@@ -50,15 +47,11 @@ export class LoginPage implements OnInit {
       return;
     }
 
-    const credentials = this.getCredentials();
-
     this.authService
       .login(this.phone?.value, this.password?.value)
       .pipe(finalize(async () => await this.loadingSrv.dismiss()))
       .subscribe({
-        next: async () =>
-          // this.router.navigateByUrl('/members', { replaceUrl: true }),
-          console.log('Logged'),
+        next: async () => this.routerService.goToHome(),
         error: async (error: any) => {
           const message = this.errorMessage.get(error);
           const alert = await this.alertController.create({
@@ -100,12 +93,5 @@ export class LoginPage implements OnInit {
       phone: ['', []],
       password: ['', []],
     });
-  }
-
-  private getCredentials() {
-    return {
-      phone: this.phone?.value,
-      password: this.password?.value,
-    };
   }
 }

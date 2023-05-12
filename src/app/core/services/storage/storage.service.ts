@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Preferences } from '@capacitor/preferences';
-import { AuthResponseModel } from '@core/models/auth/auth-response.model';
 import { UserModel } from '@core/models/user/user.model';
 
 export enum Key {
@@ -34,10 +33,6 @@ export class StorageService {
 
   async clearAll() {
     return await Preferences.clear();
-  }
-
-  async clearOnlyAuthRelated() {
-    await Preferences.remove({ key: Key.user });
   }
 
   private async store(key: string, value: string) {

@@ -26,4 +26,29 @@ export class RouterService {
     const to = `/login`;
     this.router.navigateByUrl(to, this.extras);
   }
+
+  async goToMenu() {
+    const to = `/members/menu`;
+    this.router.navigateByUrl(to, this.extras);
+  }
+
+  async goToExercise() {
+    const to = `/members/exercise`;
+    this.router.navigateByUrl(to, this.extras);
+  }
+
+  async goToDiet() {
+    const to = `/members/menu/diet`;
+    this.router.navigateByUrl(to, this.extras);
+  }
+
+  async goToShoppingList() {
+    const to = `/members/shopping-list`;
+    this.router.navigateByUrl(to, this.extras);
+  }
+
+  async goToMeal(id: string) {
+    const to = `/members/menu/diet/meal/${id}`;
+    this.router.navigateByUrl(to, this.extras);
+  }
 }

@@ -1,0 +1,25 @@
+<app-toolbar [defaultHref]="backHref"></app-toolbar>
+
+<ion-content>
+  <ion-card color="secondary">
+    <ion-card-header>
+      <ion-card-title class="card-header-title"> {{ meal?.title }} </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item color="secondary" lines="none">
+        <ion-label class="ion-text-wrap">
+          <p><b>Plato:</b> {{ meal?.meal }}, {{ meal?.dish }}</p>
+          <br />
+          <p><b>Descripción:</b> {{ meal?.description }}</p>
+          <br />
+          <p><b>Ingredientes:</b></p>
+          <ul style="padding-left: 15px; margin-top: 0px">
+            <li *ngFor="let ingredient of meal?.ingredients">
+              <p>{{ ingredient.name }}, {{ ingredient.quantity }} {{ ingredient.unit }}</p>
+            </li>
+          </ul>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

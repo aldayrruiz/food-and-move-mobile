@@ -10,17 +10,66 @@
  */
 
 /* Core CSS required for Ionic components to work properly */
-@import "@ionic/angular/css/core.css";
+@import '@ionic/angular/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/normalize.css';
+@import '@ionic/angular/css/structure.css';
+@import '@ionic/angular/css/typography.css';
 @import '@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
+@import '@ionic/angular/css/padding.css';
+@import '@ionic/angular/css/float-elements.css';
+@import '@ionic/angular/css/text-alignment.css';
+@import '@ionic/angular/css/text-transformation.css';
+@import '@ionic/angular/css/flex-utils.css';
+
+//color de fondo para toda la app: https://www.youtube.com/watch?v=sdrw15el3_w
+ion-content {
+  --background: var(--ion-color-primary);
+}
+
+.alert-button-group {
+  flex-direction: row !important;
+}
+
+.alert-button.glad {
+  background-image: url('../src/assets/icon/glad.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-right: auto;
+}
+
+.alert-button.normal {
+  background-image: url('../src/assets/icon/normal.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin: 0 auto;
+}
+
+.alert-button.sad {
+  background-image: url('../src/assets/icon/sad.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-left: auto;
+}
+
+.alert-button.yes {
+  background-image: url('../src/assets/icon/yes.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-left: auto;
+}
+
+.alert-button.no {
+  background-image: url('../src/assets/icon/no.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-left: auto;
+}

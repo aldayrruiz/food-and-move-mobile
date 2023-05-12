@@ -10,17 +10,16 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () =>
-      import('@modules/auth/pages/login/login.module').then(
-        (m) => m.LoginPageModule
-      ),
+    loadChildren: () => import('@modules/auth/pages/login/login.module').then((m) => m.LoginPageModule),
     canLoad: [CanGoToLoginGuard],
+  },
+  {
+    path: 'members',
+    loadChildren: () => import('@modules/members/routing/members.module').then((m) => m.MembersModule),
   },
 ];
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
-  ],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
