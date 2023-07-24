@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import localeEs from '@angular/common/locales/es';
 import { httpInterceptorProviders } from '@core/interceptors';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { PatientPipe } from '@shared/pipes/patient.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -19,6 +20,7 @@ registerLocaleData(localeEs, 'es');
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: LOCALE_ID, useValue: 'es-ES' },
     httpInterceptorProviders,
+    PatientPipe,
   ],
   bootstrap: [AppComponent],
 })

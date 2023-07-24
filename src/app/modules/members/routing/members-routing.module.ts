@@ -15,6 +15,18 @@ const routes: Routes = [
     path: 'menu',
     loadChildren: () => import('@modules/food/pages/menu/menu.module').then((m) => m.MenuPageModule),
   },
+  {
+    path: 'exercises',
+    loadChildren: () => import('@modules/exercise/pages/exercises/exercises.module').then((m) => m.ExercisesPageModule),
+  },
+  {
+    path: 'feedback-morning',
+    loadChildren: () => import('@modules/feedback/pages/feedback-morning/feedback-morning.module').then((m) => m.FeedbackMorningPageModule),
+  },
+  {
+    path: 'feedback-evening',
+    loadChildren: () => import('@modules/feedback/pages/feedback-evening/feedback-evening.module').then((m) => m.FeedbackEveningPageModule),
+  },
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterService } from '@core/services/router/router.service';
+import { StorageService } from '@core/services/storage/storage.service';
 import { homeButtons } from '@shared/constants/buttons';
 
 @Component({
@@ -11,13 +12,17 @@ export class HomePage {
   motivationalText = 'Come lo necesario, respira profundamente, vive con moderación, cultiva la alegría e interésate por la vida';
   buttons = homeButtons;
 
-  constructor(private routerService: RouterService) {}
+  constructor(private routerService: RouterService, private storageService: StorageService) {}
 
-  goToFood() {
-    this.routerService.goToMenu();
+  async goToFood() {
+    await this.routerService.goToMenu();
   }
 
-  goToExercise() {
-    this.routerService.goToExercise();
+  async goToExercises() {
+    await this.routerService.goToExercises();
+  }
+
+  async logout() {
+    await this.storageService.removeAll();
   }
 }

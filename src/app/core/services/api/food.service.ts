@@ -13,21 +13,21 @@ export class FoodsService {
   constructor(private readonly http: HttpClient) {}
 
   getById(id: string): Observable<FoodModel> {
-    const url = `${environment.apiUrl}/foods/${id}`;
+    const url = `${environment.api}/foods/${id}`;
     return this.http.get<FoodModel>(url);
   }
 
   getFoodsByPatientAndDate(id: string, date: DateRangeModel): Observable<FoodModel[]> {
-    return this.http.post<FoodModel[]>(`${environment.apiUrl}/foods/findByPatient/${id}`, date);
+    return this.http.post<FoodModel[]>(`${environment.api}/foods/findByPatient/${id}`, date);
   }
 
   findIngredients(idPatient: string, date: DateRangeModel) {
-    const url = `${environment.apiUrl}/foods/findIngredients/${idPatient}`;
+    const url = `${environment.api}/foods/findIngredients/${idPatient}`;
     return this.http.post<IngredientModel[]>(url, date);
   }
 
   checkIngredient(idFood: string, nameIngredient: string) {
-    const url = `${environment.apiUrl}/foods/checkIngredient/${idFood}/${nameIngredient}`;
+    const url = `${environment.api}/foods/checkIngredient/${idFood}/${nameIngredient}`;
     return this.http.get<FoodModel>(url);
   }
 

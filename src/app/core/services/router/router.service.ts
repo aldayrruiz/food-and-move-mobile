@@ -15,7 +15,7 @@ export class RouterService {
 
   async goToHome() {
     const to = `/members/home`;
-    this.router.navigateByUrl(to, this.extras);
+    await this.router.navigateByUrl(to, this.extras);
   }
 
   async goBack(route: ActivatedRoute) {
@@ -24,31 +24,46 @@ export class RouterService {
 
   async goToLogin() {
     const to = `/login`;
-    this.router.navigateByUrl(to, this.extras);
+    await this.router.navigateByUrl(to, this.extras);
   }
 
   async goToMenu() {
     const to = `/members/menu`;
-    this.router.navigateByUrl(to, this.extras);
+    await this.router.navigateByUrl(to, this.extras);
   }
 
-  async goToExercise() {
-    const to = `/members/exercise`;
-    this.router.navigateByUrl(to, this.extras);
+  async goToExercises() {
+    const to = `/members/exercises`;
+    await this.router.navigateByUrl(to, this.extras);
+  }
+
+  async goToExercise(id: string) {
+    const to = `/members/exercises/exercise/${id}`;
+    await this.router.navigateByUrl(to, this.extras);
   }
 
   async goToDiet() {
     const to = `/members/menu/diet`;
-    this.router.navigateByUrl(to, this.extras);
+    await this.router.navigateByUrl(to, this.extras);
   }
 
   async goToShoppingList() {
     const to = `/members/shopping-list`;
-    this.router.navigateByUrl(to, this.extras);
+    await this.router.navigateByUrl(to, this.extras);
   }
 
-  async goToMeal(id: string) {
-    const to = `/members/menu/diet/meal/${id}`;
-    this.router.navigateByUrl(to, this.extras);
+  async goToFood(id: string) {
+    const to = `/members/menu/diet/food/${id}`;
+    await this.router.navigateByUrl(to, this.extras);
+  }
+
+  async goToFeedbackMorning() {
+    const to = `/members/feedback-morning`;
+    await this.router.navigateByUrl(to, this.extras);
+  }
+
+  async goToFeedbackEvening() {
+    const to = `/members/feedback-evening`;
+    await this.router.navigateByUrl(to, this.extras);
   }
 }

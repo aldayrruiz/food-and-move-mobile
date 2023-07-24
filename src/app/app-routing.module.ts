@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CanGoToLoginGuard } from '@core/guards/can-go-to-login.guard';
+import { CanGoToMembers } from '@core/guards/can-go-to-members';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
   {
     path: 'members',
     loadChildren: () => import('@modules/members/routing/members.module').then((m) => m.MembersModule),
+    canLoad: [CanGoToMembers],
   },
 ];
 @NgModule({

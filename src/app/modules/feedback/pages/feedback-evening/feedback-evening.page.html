@@ -1,0 +1,10 @@
+<app-toolbar [defaultHref]="backHref"></app-toolbar>
+<ion-content>
+  <!--Pregunta al usuario como se siente -->
+  <!-- El usuario podrá elegir entre tres botones: triste, normal, feliz -->
+  <!-- Al pulsar un botón se guardará la respuesta en la base de datos -->
+  <app-feedback-input question="¿Cómo te sientes hoy?" #howHaveYouFeelInput></app-feedback-input>
+  <app-feedback-input question="¿Cómo ha ido hoy la dieta?" #howIsItGoingTheDiet></app-feedback-input>
+  <app-feedback-input question="¿Cómo ha ido hoy los ejercicios" #howIsItGoingTheExercises></app-feedback-input>
+  <ion-button class="ion-padding-horizontal" color="tertiary" expand="block" (click)="save()">Guardar</ion-button>
+</ion-content>

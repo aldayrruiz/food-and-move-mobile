@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'diet',
-    loadChildren: () => import('@modules/food/pages/diet/diet.module').then((m) => m.DietPageModule),
+    loadChildren: () => import('@modules/food/pages/menu/diet/diet.module').then((m) => m.DietPageModule),
   },
 ];
 

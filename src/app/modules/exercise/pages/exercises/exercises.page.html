@@ -1,0 +1,23 @@
+<app-toolbar [defaultHref]="backHref" title="{{ selectedDayString | date : 'mediumDate' | titlecase }}"></app-toolbar>
+<ion-content>
+  <app-segment-days (daysInitEventEmitter)="initUI($event)" (selectedDayChangedEmitter)="selectedDayChanged($event)"></app-segment-days>
+
+  <div *ngFor="let exerciseDay of exerciseDays">
+    <span *ngIf="exerciseDay.day?.toJSON() === selectedDayString">
+      <ion-card color="secondary">
+        <ion-card-header>
+          <ion-card-title class="card-header-title">
+            <ion-img class="card-icon-header" src="/assets/icon/exercise.png"> </ion-img>
+            Ejercicios
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <!-- List of exercises -->
+          <ion-button *ngFor="let exercise of exerciseDay.exercises" color="tertiary" (click)="goToExercise(exercise)">
+            {{ exercise.title }}
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </span>
+  </div>
+</ion-content>

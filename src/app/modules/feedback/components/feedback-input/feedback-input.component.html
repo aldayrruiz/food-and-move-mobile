@@ -1,0 +1,36 @@
+<ion-card color="secondary">
+  <ion-card-header>
+    <ion-card-subtitle>{{ question }}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content class="ion-margin-horizontal">
+    <ion-radio-group [(ngModel)]="selectedButton" class="custom-radio-group">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card class="same-width-height" [ngClass]="{ 'card-selected': selectedButton === 'BAD' }" (click)="changeSelection('BAD')">
+              <img src="assets/icon/sad.png" alt="bad-icon" />
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card
+              class="same-width-height"
+              [ngClass]="{ 'card-selected': selectedButton === 'NEUTRAL' }"
+              (click)="changeSelection('NEUTRAL')"
+            >
+              <img src="assets/icon/normal.png" alt="neutral-icon" />
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card
+              class="same-width-height"
+              [ngClass]="{ 'card-selected': selectedButton === 'GOOD' }"
+              (click)="changeSelection('GOOD')"
+            >
+              <img src="assets/icon/glad.png" alt="good-icon" />
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-radio-group>
+  </ion-card-content>
+</ion-card>

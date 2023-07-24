@@ -48,11 +48,15 @@ export class LoginPage implements OnInit {
     }
 
     this.authService
-      .login(this.phone?.value, this.password?.value)
+      .signIn(this.phone?.value, this.password?.value)
       .pipe(finalize(async () => await this.loadingSrv.dismiss()))
       .subscribe({
-        next: async () => this.routerService.goToHome(),
+        next: async (jwt) => {
+          await this.authService.storeImportantVariables(jwt);
+          await this.routerService.goToHome();
+        },
         error: async (error: any) => {
+          console.error(error);
           const message = this.errorMessage.get(error);
           const alert = await this.alertController.create({
             header: 'Login failed',
