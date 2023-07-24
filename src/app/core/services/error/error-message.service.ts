@@ -7,6 +7,6 @@ export class ErrorMessageService {
   constructor() {}
 
   get(error: any): string {
-    return error.error.message;
+    return error?.error?.message;
   }
 }

@@ -1,46 +1,41 @@
 import { Injectable } from '@angular/core';
 import { Preferences } from '@capacitor/preferences';
-import { AuthResponseModel } from '@core/models/auth/auth-response.model';
-import { UserModel } from '@core/models/user/user.model';
+import { JWT } from '@core/models/auth/jwt.model';
+import { PatientModel } from '@core/models/patient/patient.model';
 
-export enum Key {
-  user = 'user',
-  jwt = 'jwt',
-}
+export const JWT_KEY = 'jwt';
+export const USER_KEY = 'user';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
-  constructor() {}
-
-  async storeUser(user: UserModel) {
-    const stringified = JSON.stringify(user);
-    return this.store(Key.user, stringified);
+  async storeUser(user: PatientModel) {
+    await this.set(USER_KEY, JSON.stringify(user));
   }
 
-  async getUser() {
-    const user = await this.get(Key.user);
+  async getUser(): Promise<PatientModel> {
+    const user = await this.get(USER_KEY);
     return user ? JSON.parse(user) : null;
   }
 
-  async storeToken(token: string) {
-    const stringified = JSON.stringify({ accessToken: token });
-    return this.store(Key.jwt, stringified);
+  async storeJWT(jwt: JWT) {
+    await this.set(JWT_KEY, JSON.stringify(jwt));
+  }
+
+  async getJWT(): Promise<JWT> {
+    const jwt = await this.get(JWT_KEY);
+    return jwt ? JSON.parse(jwt) : null;
   }
 
   async getToken() {
-    const token = await this.get(Key.jwt);
+    const token = await this.get(JWT_KEY);
     return token ? JSON.parse(token) : null;
   }
 
-  async clearAll() {
+  async removeAll() {
     return await Preferences.clear();
   }
 
-  async clearOnlyAuthRelated() {
-    await Preferences.remove({ key: Key.user });
-  }
-
-  private async store(key: string, value: string) {
+  private async set(key: string, value: string) {
     return Preferences.set({ key, value });
   }
 

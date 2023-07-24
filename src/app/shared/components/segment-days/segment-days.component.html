@@ -1,0 +1,5 @@
+<ion-segment [scrollable]="true" [(ngModel)]="selectedDay" color="dark" (ionChange)="selectedDayChanged($event)">
+  <ion-segment-button *ngFor="let day of days" [value]="day.toJSON()">
+    <ion-label>{{ day | date : 'EEEE' | titlecase }}</ion-label>
+  </ion-segment-button>
+</ion-segment>

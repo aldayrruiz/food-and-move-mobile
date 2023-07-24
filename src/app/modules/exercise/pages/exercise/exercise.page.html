@@ -1,0 +1,18 @@
+<app-toolbar [defaultHref]="backHref"></app-toolbar>
+
+<ion-content>
+  <ion-card color="secondary">
+    <ion-card-header>
+      <ion-card-title class="card-header-title"> {{ exercise?.title }} </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item color="secondary" lines="none">
+        <ion-label class="ion-text-wrap">
+          <p><b>Descripción:</b> {{ exercise?.description }}</p>
+          <br />
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <app-youtube-player *ngFor="let link of youtubeVideosIds" [videoId]="link"></app-youtube-player>
+</ion-content>

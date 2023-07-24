@@ -1,0 +1,8 @@
+<app-toolbar [defaultHref]="backHref"></app-toolbar>
+<ion-content>
+  <!-- Motivational Text -->
+  <app-motivational-phrase></app-motivational-phrase>
+  <!-- Buttons -->
+  <app-big-button-icon [button]="buttons.diet" (click)="goToDiet()"></app-big-button-icon>
+  <app-big-button-icon [button]="buttons.shoppingList" (click)="goToShoppingList()"></app-big-button-icon>
+</ion-content>
