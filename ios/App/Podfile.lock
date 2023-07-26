@@ -1,0 +1,64 @@
+PODS:
+  - Capacitor (5.0.0):
+    - CapacitorCordova
+  - CapacitorApp (5.0.0):
+    - Capacitor
+  - CapacitorCordova (5.0.0)
+  - CapacitorHaptics (5.0.0):
+    - Capacitor
+  - CapacitorKeyboard (5.0.0):
+    - Capacitor
+  - CapacitorLocalNotifications (5.0.5):
+    - Capacitor
+  - CapacitorNetwork (5.0.0):
+    - Capacitor
+  - CapacitorPreferences (5.0.0):
+    - Capacitor
+  - CapacitorStatusBar (5.0.0):
+    - Capacitor
+
+DEPENDENCIES:
+  - "Capacitor (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
+  - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
+  - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
+  - "CapacitorLocalNotifications (from `../../node_modules/@capacitor/local-notifications`)"
+  - "CapacitorNetwork (from `../../node_modules/@capacitor/network`)"
+  - "CapacitorPreferences (from `../../node_modules/@capacitor/preferences`)"
+  - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
+
+EXTERNAL SOURCES:
+  Capacitor:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorApp:
+    :path: "../../node_modules/@capacitor/app"
+  CapacitorCordova:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorHaptics:
+    :path: "../../node_modules/@capacitor/haptics"
+  CapacitorKeyboard:
+    :path: "../../node_modules/@capacitor/keyboard"
+  CapacitorLocalNotifications:
+    :path: "../../node_modules/@capacitor/local-notifications"
+  CapacitorNetwork:
+    :path: "../../node_modules/@capacitor/network"
+  CapacitorPreferences:
+    :path: "../../node_modules/@capacitor/preferences"
+  CapacitorStatusBar:
+    :path: "../../node_modules/@capacitor/status-bar"
+
+SPEC CHECKSUMS:
+  Capacitor: b332cb737d447561e854039fb72195206685dce2
+  CapacitorApp: 16e189e0463976060ccf34868e3083858c977e2b
+  CapacitorCordova: 4ea17670ee562680988a7ce9db68dee5160fe564
+  CapacitorHaptics: a7d1a6be8d84bcb2749bad57230a8b9e8cdcef7c
+  CapacitorKeyboard: 8a25a4241b74f69d457a7e81220a54c22214a679
+  CapacitorLocalNotifications: cb6a69d128c5ed2a7f22c897c393c0e380f680e7
+  CapacitorNetwork: 4ea79dd31b0a2032153aad52a8c0a3b68e42c9c1
+  CapacitorPreferences: 5cc9fe87f71b84bd0cf30966009f24764d0b8c56
+  CapacitorStatusBar: 7ff77f2b22a52a93a140d1b2dede027bfb7d705f
+
+PODFILE CHECKSUM: fb4a852525832859ffd3656467c0b25e8045c4dd
+
+COCOAPODS: 1.11.3
