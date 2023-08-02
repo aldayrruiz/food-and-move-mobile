@@ -5,7 +5,8 @@ import { Meal } from '@core/models/food/meal.model';
 import { PatientModel } from '@core/models/patient/patient.model';
 import { FoodsService } from '@core/services/api/food.service';
 import { StorageService } from '@core/services/storage/storage.service';
-import { isSameDay } from 'date-fns';
+import { getDay } from 'date-fns';
+import { lastValueFrom } from 'rxjs';
 
 interface FoodDay {
   day: Date;
@@ -41,16 +42,21 @@ export class DietPage {
     const startDate = days[0];
     const endDate = days[days.length - 1];
     await this.initUser();
-    this.initFoods(startDate, endDate);
+    await this.initFoods(startDate, endDate);
   }
 
-  private initFoods(startDate: Date, endDate: Date) {
+  private async initFoods(startDate: Date, endDate: Date) {
+    const today = new Date();
     const range: DateRangeModel = { startDate, endDate };
-    this.foodService.getFoodsByPatientAndDate(this.user._id, range).subscribe({
-      next: (foods: FoodModel[]): void => {
-        this.initFoodsPerDay(foods);
-      },
-    });
+    const currentFoods = await lastValueFrom(this.foodService.getFoodsByPatientAndDate(this.user._id, range));
+    const lastFoodsAssigned = await lastValueFrom(this.foodService.getLastAssignedFoods(this.user._id, today.toISOString()));
+    const foods = [...currentFoods, ...lastFoodsAssigned];
+    const uniqueFoods = foods.reduce((acc: any, food: FoodModel) => {
+      acc[food._id] = food;
+      return acc;
+    }, {});
+    const uniqueFoodsArray: FoodModel[] = Object.values(uniqueFoods);
+    this.initFoodsPerDay(uniqueFoodsArray);
   }
 
   private initFoodsPerDay(foods: FoodModel[]) {
@@ -65,7 +71,7 @@ export class DietPage {
   }
 
   private getMealsByDay(foods: FoodModel[], meal: Meal, day: Date): FoodModel[] {
-    return foods.filter((food: FoodModel) => food.meal === meal && isSameDay(new Date(food.date), day));
+    return foods.filter((food: FoodModel) => food.meal === meal && getDay(new Date(food.date)) === getDay(day));
   }
 
   private async initUser() {

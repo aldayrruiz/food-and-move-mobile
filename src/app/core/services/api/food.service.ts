@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DateRangeModel } from '@core/models/date/date-range.model';
 import { FoodModel } from '@core/models/food/food.model';
@@ -17,8 +17,8 @@ export class FoodsService {
     return this.http.get<FoodModel>(url);
   }
 
-  getFoodsByPatientAndDate(id: string, date: DateRangeModel): Observable<FoodModel[]> {
-    return this.http.post<FoodModel[]>(`${environment.api}/foods/findByPatient/${id}`, date);
+  getFoodsByPatientAndDate(id: string, dateRange: DateRangeModel): Observable<FoodModel[]> {
+    return this.http.post<FoodModel[]>(`${environment.api}/foods/findByPatient/${id}`, dateRange);
   }
 
   findIngredients(idPatient: string, date: DateRangeModel) {
@@ -29,6 +29,12 @@ export class FoodsService {
   checkIngredient(idFood: string, nameIngredient: string) {
     const url = `${environment.api}/foods/checkIngredient/${idFood}/${nameIngredient}`;
     return this.http.get<FoodModel>(url);
+  }
+
+  getLastAssignedFoods(patientId: string, limitDate: string) {
+    const params = new HttpParams().set('limitDate', limitDate);
+    const url = `${environment.api}/foods/lastAssigned/${patientId}`;
+    return this.http.get<FoodModel[]>(url, { params });
   }
 
   // getAttachmentById(idAttachment: string) {

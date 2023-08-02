@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { eachDayOfInterval, lastDayOfWeek, startOfToday, startOfWeek } from 'date-fns';
+import { addDays, eachDayOfInterval, startOfToday } from 'date-fns';
 
 @Component({
   selector: 'app-segment-days',
@@ -24,15 +24,14 @@ export class SegmentDaysComponent implements OnInit {
 
   private initDays() {
     const today = startOfToday();
-    const firstDay = startOfWeek(today, { weekStartsOn: 1 });
-    const lastDay = lastDayOfWeek(today, { weekStartsOn: 1 });
+    const lastDay = addDays(today, 6);
 
     // Set today as selected day and inform parent component
     this.selectedDay = today.toJSON();
     this.selectedDayChangedEmitter.emit(this.selectedDay);
 
     // Set weeks days and inform parent component
-    this.days = eachDayOfInterval({ start: firstDay, end: lastDay });
+    this.days = eachDayOfInterval({ start: today, end: lastDay });
     this.daysInitEventEmitter.emit(this.days);
   }
 }
