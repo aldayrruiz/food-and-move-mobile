@@ -10,6 +10,14 @@
         <ion-label class="ion-text-wrap">
           <p><b>Descripción:</b> {{ exercise?.description }}</p>
           <br />
+          <p>
+            <b>Link de recetas:</b>
+            <a *ngFor="let link of exercise?.links" target="_blank" href="{{ link }}">
+              {{ link }}
+              <br /><br />
+            </a>
+          </p>
+          <br />
         </ion-label>
       </ion-item>
     </ion-card-content>

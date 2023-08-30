@@ -28,7 +28,8 @@ export class ExercisePage implements OnInit {
   }
 
   private initYoutubeVideosIds() {
-    this.exercise?.links?.forEach((link) => {
+    this.exercise?.videos?.forEach((link) => {
+      // creo que es videos y no links
       this.youtubeVideosIds.push(this.getYoutubeVideoId(link));
     });
   }
