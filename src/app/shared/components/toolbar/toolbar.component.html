@@ -1,6 +1,25 @@
-<ion-toolbar color="primary">
+<ion-toolbar color="primary" id="main-content">
   <ion-buttons slot="start">
     <ion-back-button text="Atrás" [defaultHref]="defaultHref"></ion-back-button>
   </ion-buttons>
+  <ion-buttons slot="end" *ngIf="isOnMembersPage()">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
   <ion-title *ngIf="title">{{ title }}</ion-title>
 </ion-toolbar>
+
+<ion-menu side="end" contentId="main-content" *ngIf="user">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-item lines="none" color="primary">
+        <ion-avatar slot="start">
+          <img alt="Silhouette of a person's head" [src]="user.profile_image | photo" />
+        </ion-avatar>
+        <ion-label>{{ user.name }} {{ user.surname }}</ion-label>
+      </ion-item>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-button expand="block" color="tertiary" (click)="logOut()">Cerrar sesión</ion-button>
+  </ion-content>
+</ion-menu>

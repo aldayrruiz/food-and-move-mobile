@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { AttachmentModel } from '@core/models/attachment/attachment.model';
 import { ExerciseModel } from '@core/models/exercise/exercise.model';
 import { ExerciseService } from '@core/services/api/exercise.service';
 
@@ -10,10 +12,11 @@ import { ExerciseService } from '@core/services/api/exercise.service';
 })
 export class ExercisePage implements OnInit {
   backHref = '/members/exercises';
-  exercise?: ExerciseModel;
-  youtubeVideosIds: string[] = [];
+  exercise!: ExerciseModel;
+  pdfUrl: any;
+  attachment!: AttachmentModel;
 
-  constructor(private exerciseService: ExerciseService, private route: ActivatedRoute) {}
+  constructor(private exerciseService: ExerciseService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     this.getExercise();
@@ -23,19 +26,22 @@ export class ExercisePage implements OnInit {
     const exerciseId = this.route.snapshot.paramMap.get('exerciseId') || '';
     this.exerciseService.getById(exerciseId).subscribe((exercise) => {
       this.exercise = exercise;
-      this.initYoutubeVideosIds();
+      this.initPdfUrl();
     });
   }
 
-  private initYoutubeVideosIds() {
-    this.exercise?.links?.forEach((link) => {
-      this.youtubeVideosIds.push(this.getYoutubeVideoId(link));
+  initPdfUrl() {
+    this.exerciseService.getAttachmentById(this.exercise.attachment).subscribe({
+      next: (res: AttachmentModel) => {
+        this.attachment = res;
+        try {
+          const pdfUrl = `https://foodandmove.app.bluece.eu/api/files/attachment/${this.attachment.filename}`;
+          this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(encodeURI(pdfUrl));
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      error: (err: any) => {},
     });
-  }
-
-  private getYoutubeVideoId(link: string) {
-    const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
-    const matches = regex.exec(link);
-    return matches ? matches[1] : '';
   }
 }

@@ -48,7 +48,7 @@ export class RouterService {
   }
 
   async goToShoppingList() {
-    const to = `/members/shopping-list`;
+    const to = `/members/menu/shopping-list`;
     await this.router.navigateByUrl(to, this.extras);
   }
 

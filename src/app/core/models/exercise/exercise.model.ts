@@ -7,4 +7,5 @@ export interface ExerciseModel {
   links: string[];
   videos: string[];
   done: boolean;
+  attachment: string;
 }

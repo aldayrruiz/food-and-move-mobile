@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   async logout() {
-    await this.storageService.removeAll();
+    await this.storageService.removeAuthRelated();
     await this.routerService.goToLogin();
   }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FoodModel } from '@core/models/food/food.model';
-import { FoodsService } from '@core/services/api/food.service';
 
 @Component({
   selector: 'app-food',
@@ -10,16 +9,18 @@ import { FoodsService } from '@core/services/api/food.service';
 })
 export class FoodPage implements OnInit {
   backHref = '/members/menu/diet';
-  meal?: FoodModel;
+  food!: FoodModel;
 
-  constructor(private foodService: FoodsService, private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.getMeal();
+    this.initFood();
   }
 
-  getMeal() {
-    const foodId = this.route.snapshot.paramMap.get('mealId') || '';
-    this.foodService.getById(foodId).subscribe((meal) => (this.meal = meal));
+  initFood() {
+    this.route.data.subscribe((data) => {
+      this.food = data['food'];
+      console.log(this.food.videos);
+    });
   }
 }

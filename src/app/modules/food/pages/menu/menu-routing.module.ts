@@ -10,7 +10,11 @@ const routes: Routes = [
   },
   {
     path: 'diet',
-    loadChildren: () => import('@modules/food/pages/menu/diet/diet.module').then((m) => m.DietPageModule),
+    loadChildren: () => import('@modules/food/pages/diet/diet.module').then((m) => m.DietPageModule),
+  },
+  {
+    path: 'shopping-list',
+    loadChildren: () => import('@modules/food/pages/shopping-list/shopping-list.module').then((m) => m.ShoppingListPageModule),
   },
 ];
 

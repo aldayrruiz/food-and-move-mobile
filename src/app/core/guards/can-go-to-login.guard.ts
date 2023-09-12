@@ -10,7 +10,7 @@ export class CanGoToLoginGuard implements CanLoad {
   constructor(private storageService: StorageService, private routerService: RouterService) {}
 
   async canLoad(): Promise<boolean | UrlTree> {
-    const jwt = await this.storageService.getToken();
+    const jwt = await this.storageService.getJWT();
     if (jwt) {
       await this.routerService.goToHome();
       return false;

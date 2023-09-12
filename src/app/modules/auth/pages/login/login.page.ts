@@ -4,6 +4,7 @@ import { Network } from '@capacitor/network';
 import { AuthService } from '@core/services/api/auth.service';
 import { ErrorMessageService } from '@core/services/error/error-message.service';
 import { RouterService } from '@core/services/router/router.service';
+import { StorageService } from '@core/services/storage/storage.service';
 import { LoadingService } from '@core/services/view/loading.service';
 import { AlertController } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
@@ -23,7 +24,8 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private loadingSrv: LoadingService,
     private fb: FormBuilder,
-    private routerService: RouterService
+    private routerService: RouterService,
+    private storageService: StorageService
   ) {}
 
   get phone() {
@@ -32,6 +34,10 @@ export class LoginPage implements OnInit {
 
   get password() {
     return this.credentials.get('password');
+  }
+
+  get rememberChoice() {
+    return this.credentials.get('rememberChoice');
   }
 
   async ngOnInit() {
@@ -45,6 +51,15 @@ export class LoginPage implements OnInit {
 
     if (!isConnected) {
       return;
+    }
+
+    if (this.rememberChoice?.value) {
+      await this.storageService.storeRememberPhone({
+        phone: this.phone?.value,
+        choice: this.rememberChoice?.value,
+      });
+    } else {
+      await this.storageService.removeRememberPhone();
     }
 
     this.authService
@@ -96,6 +111,17 @@ export class LoginPage implements OnInit {
     this.credentials = this.fb.group({
       phone: ['', []],
       password: ['', []],
+      rememberChoice: [false, []],
+    });
+
+    const rememberPhone = await this.storageService.getRememberPhone();
+    const phone = rememberPhone?.phone || '';
+    const rememberChoice = rememberPhone?.choice || false;
+
+    this.credentials.setValue({
+      phone: phone,
+      password: '',
+      rememberChoice: rememberChoice,
     });
   }
 }

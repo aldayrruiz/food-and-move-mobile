@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AttachmentModel } from '@core/models/attachment/attachment.model';
 import { DateRangeModel } from '@core/models/date/date-range.model';
 import { ExerciseModel } from '@core/models/exercise/exercise.model';
 import { Observable } from 'rxjs';
@@ -23,5 +24,10 @@ export class ExerciseService {
     const params = new HttpParams().set('limitDate', limitDate);
     const url = `${environment.api}/moves/lastAssigned/${patientId}`;
     return this.http.get<ExerciseModel[]>(url, { params });
+  }
+
+  getAttachmentById(idAttachment: string) {
+    const url = `${environment.api}/attachments/findOne/${idAttachment}`;
+    return this.http.get<AttachmentModel>(url);
   }
 }

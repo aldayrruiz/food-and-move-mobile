@@ -19,7 +19,6 @@ export class MenuPage {
   }
 
   goToShoppingList() {
-    return;
     this.routerService.goToShoppingList();
   }
 }

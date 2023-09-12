@@ -7,7 +7,8 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['./youtube-player.component.scss'],
 })
 export class YoutubePlayerComponent implements OnInit {
-  @Input() videoId?: string;
+  @Input() url!: string;
+  youtubeId!: string;
   apiLoaded = false;
   width = 100;
   height = 100;
@@ -28,6 +29,13 @@ export class YoutubePlayerComponent implements OnInit {
       tag.src = 'https://www.youtube.com/iframe_api';
       document.body.appendChild(tag);
       this.apiLoaded = true;
+      this.youtubeId = this.getYoutubeVideoId(this.url);
     }
+  }
+
+  private getYoutubeVideoId(link: string) {
+    const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+    const matches = regex.exec(link);
+    return matches ? matches[1] : '';
   }
 }

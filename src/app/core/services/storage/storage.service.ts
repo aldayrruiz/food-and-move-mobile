@@ -5,6 +5,12 @@ import { PatientModel } from '@core/models/patient/patient.model';
 
 export const JWT_KEY = 'jwt';
 export const USER_KEY = 'user';
+export const REMEMBER_KEY = 'remember';
+
+export interface RememberPhone {
+  phone: string;
+  choice: boolean;
+}
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
@@ -26,13 +32,34 @@ export class StorageService {
     return jwt ? JSON.parse(jwt) : null;
   }
 
-  async getToken() {
-    const token = await this.get(JWT_KEY);
-    return token ? JSON.parse(token) : null;
+  async storeRememberPhone(rememberPhone: RememberPhone) {
+    await this.set(REMEMBER_KEY, JSON.stringify(rememberPhone));
+  }
+
+  async getRememberPhone(): Promise<RememberPhone> {
+    const rememberPhone = await this.get(REMEMBER_KEY);
+    return rememberPhone ? JSON.parse(rememberPhone) : null;
   }
 
   async removeAll() {
     return await Preferences.clear();
+  }
+
+  async removeAuthRelated() {
+    await this.removeJWT();
+    await this.removeUser();
+  }
+
+  async removeJWT() {
+    return await Preferences.remove({ key: JWT_KEY });
+  }
+
+  async removeUser() {
+    return await Preferences.remove({ key: USER_KEY });
+  }
+
+  async removeRememberPhone() {
+    return await Preferences.remove({ key: REMEMBER_KEY });
   }
 
   private async set(key: string, value: string) {

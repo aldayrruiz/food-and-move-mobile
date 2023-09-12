@@ -3,18 +3,18 @@
 <ion-content>
   <ion-card color="secondary">
     <ion-card-header>
-      <ion-card-title class="card-header-title"> {{ meal?.title }} </ion-card-title>
+      <ion-card-title class="card-header-title"> {{ food.title }} </ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-item color="secondary" lines="none">
         <ion-label class="ion-text-wrap">
-          <p><b>Plato:</b> {{ meal?.meal }}, {{ meal?.dish }}</p>
+          <p><b>Plato:</b> {{ food.meal }}, {{ food.dish }}</p>
           <br />
-          <p><b>Descripción:</b> {{ meal?.description }}</p>
+          <p><b>Descripción:</b> {{ food.description }}</p>
           <br />
           <p><b>Ingredientes:</b></p>
           <ul style="padding-left: 15px; margin-top: 0px">
-            <li *ngFor="let ingredient of meal?.ingredients">
+            <li *ngFor="let ingredient of food.ingredients">
               <p>{{ ingredient.name }}, {{ ingredient.quantity }} {{ ingredient.unit }}</p>
             </li>
           </ul>
@@ -22,4 +22,8 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
+
+  <app-youtube-player *ngFor="let video of food.videos" [url]="video"></app-youtube-player>
+  <app-pdf-viewer *ngIf="food.attachment" [attachmentId]="food.attachment"></app-pdf-viewer>
+  <app-web-article *ngFor="let url of food.links" [url]="url"></app-web-article>
 </ion-content>

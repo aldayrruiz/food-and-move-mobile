@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AttachmentModel } from '@core/models/attachment/attachment.model';
 import { DateRangeModel } from '@core/models/date/date-range.model';
 import { FoodModel } from '@core/models/food/food.model';
 import { IngredientModel } from '@core/models/food/ingredient.model';
@@ -37,8 +38,8 @@ export class FoodsService {
     return this.http.get<FoodModel[]>(url, { params });
   }
 
-  // getAttachmentById(idAttachment: string) {
-  //   const url = `${environment.apiUrl}/attachments/findOne/${idAttachment}`;
-  //   return this.http.get<AttachmentModel>(url);
-  // }
+  getAttachmentById(idAttachment: string) {
+    const url = `${environment.api}/attachments/findOne/${idAttachment}`;
+    return this.http.get<AttachmentModel>(url);
+  }
 }

@@ -16,6 +16,7 @@
           <span *ngIf="phone?.errors?.['required']">El teléfono es necesario</span>
           <span *ngIf="phone?.errors?.['valid']">El teléfono es invalido</span>
         </div>
+
         <!-- Password -->
         <ion-item style="border-radius: 0px 0px 10px 10px" color="light" lines="none">
           <app-show-hide-password>
@@ -26,10 +27,11 @@
           <span *ngIf="password?.errors?.['required']">La contraseña es necesaria</span>
           <!-- <span *ngIf="password?.errors?.['minlength']">La contraseña debe ser como mínimo de 6 caracteres</span> -->
         </div>
-        <!-- <ion-item lines="none" style="text-align: right">
-          <ion-label style="font-size: 14px">Recordar phone</ion-label>
-          <ion-checkbox formControlName="rememberPhone" style="margin-right: 2px" slot="end"></ion-checkbox>
-        </ion-item> -->
+        <ion-item color="primary" lines="none" style="text-align: right">
+          <ion-checkbox color="tertiary" formControlName="rememberChoice" style="margin-right: 2px; font-size: 14px" slot="end">
+            Recordar teléfono
+          </ion-checkbox>
+        </ion-item>
         <ion-button class="ion-margin-vertical" color="secondary" type="submit" expand="block" [disabled]="!credentials.valid">
           Iniciar sesión
         </ion-button>

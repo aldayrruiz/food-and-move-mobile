@@ -9,8 +9,8 @@ const routes: Routes = [
     component: DietPage,
   },
   {
-    path: 'food/:mealId',
-    loadChildren: () => import('@modules/food/pages/menu/diet/food/food.module').then((m) => m.MealPageModule),
+    path: 'food/:foodId',
+    loadChildren: () => import('@modules/food/pages/food/food.module').then((m) => m.MealPageModule),
   },
 ];
 
