@@ -49,7 +49,6 @@ export class ShoppingListPage implements OnInit {
         const ingredientsMap = this.groupIngredients(ingredients);
         const unifiedIngredientsMap = this.unifyUnits(ingredientsMap);
         this.shoppingList = this.getShoppingList(unifiedIngredientsMap);
-        console.log('Shopping List loaded', this.shoppingList);
       },
       error: () => {},
     });
@@ -61,7 +60,6 @@ export class ShoppingListPage implements OnInit {
       this.shoppingListService.create(this.shoppingList).subscribe({
         next: (shoppingList) => {
           this.shoppingList = shoppingList;
-          console.log('Shopping list created', this.shoppingList);
         },
         error: () => {},
       });
@@ -69,7 +67,6 @@ export class ShoppingListPage implements OnInit {
       this.shoppingListService.update(this.shoppingList._id, ingredient._id, ingredient.isChecked).subscribe({
         next: (shoppingList) => {
           this.shoppingList = shoppingList;
-          console.log('Shopping list updated', this.shoppingList);
         },
         error: () => {},
       });

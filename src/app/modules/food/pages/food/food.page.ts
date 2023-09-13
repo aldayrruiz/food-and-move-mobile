@@ -20,7 +20,6 @@ export class FoodPage implements OnInit {
   initFood() {
     this.route.data.subscribe((data) => {
       this.food = data['food'];
-      console.log(this.food.videos);
     });
   }
 }

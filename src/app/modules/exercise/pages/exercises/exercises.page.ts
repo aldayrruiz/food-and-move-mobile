@@ -62,7 +62,6 @@ export class ExercisesPage {
 
   private initExercisesPerDay(exercises: ExerciseModel[]) {
     this.days.forEach((day: Date) => {
-      console.log(exercises);
       const exercisesPerDay: ExerciseModel[] = exercises.filter(
         (exercise: ExerciseModel) => getDay(new Date(exercise.date)) === getDay(day)
       );

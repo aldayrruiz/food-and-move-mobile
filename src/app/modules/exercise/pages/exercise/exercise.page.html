@@ -16,6 +16,6 @@
   </ion-card>
 
   <app-youtube-player *ngFor="let video of exercise.videos" [url]="video"></app-youtube-player>
-  <app-pdf-viewer [attachmentId]="exercise.attachment"></app-pdf-viewer>
+  <app-pdf-viewer *ngIf="exercise.attachment" [attachmentId]="exercise.attachment"></app-pdf-viewer>
   <app-web-article *ngFor="let url of exercise.links" [url]="url"></app-web-article>
 </ion-content>

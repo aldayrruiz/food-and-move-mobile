@@ -20,6 +20,9 @@ export class PdfViewerComponent implements OnInit {
   }
 
   initPdfUrl() {
+    if (!this.attachmentId) {
+      return;
+    }
     this.foodService.getAttachmentById(this.attachmentId).subscribe({
       next: (res: AttachmentModel) => {
         this.attachment = res;

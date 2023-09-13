@@ -14,7 +14,6 @@ export class WebArticleComponent implements OnInit {
   ngOnInit() {}
 
   async openLink() {
-    console.log(this.url);
     await Browser.open({ url: this.url });
   }
 }
