@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AttachmentModel } from '@core/models/attachment/attachment.model';
 import { FoodsService } from '@core/services/api/food.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-pdf-viewer',
@@ -11,9 +11,9 @@ import { FoodsService } from '@core/services/api/food.service';
 export class PdfViewerComponent implements OnInit {
   @Input() attachmentId!: string;
   attachment!: AttachmentModel;
-  pdfUrl!: SafeResourceUrl;
+  pdfUrl!: string;
 
-  constructor(private foodService: FoodsService, private sanitizer: DomSanitizer) {}
+  constructor(private foodService: FoodsService) {}
 
   ngOnInit() {
     this.initPdfUrl();
@@ -27,10 +27,9 @@ export class PdfViewerComponent implements OnInit {
       next: (res: AttachmentModel) => {
         this.attachment = res;
         try {
-          const pdfUrl = `https://foodandmove.app.bluece.eu/api/files/attachment/${this.attachment.filename}`;
-          this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(encodeURI(pdfUrl));
+          this.pdfUrl = `${environment.api}/files/attachment/${this.attachment.filename}`;
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
       },
       error: (err: any) => {},

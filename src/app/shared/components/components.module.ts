@@ -8,6 +8,7 @@ import { SegmentDaysComponent } from '@shared/components/segment-days/segment-da
 import { WebArticleComponent } from '@shared/components/web-article/web-article.component';
 import { YoutubePlayerComponent } from '@shared/components/youtube-player/youtube-player.component';
 import { PipesModule } from '@shared/pipes/pipes.module';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { BigButtonIconComponent } from './big-button-icon/big-button-icon.component';
 import { MotivationalPhraseComponent } from './motivational-phrase/motivational-phrase.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -22,7 +23,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     PdfViewerComponent,
     WebArticleComponent,
   ],
-  imports: [CommonModule, IonicModule, FormsModule, YouTubePlayerModule, PipesModule],
+  imports: [CommonModule, IonicModule, FormsModule, YouTubePlayerModule, PipesModule, NgxExtendedPdfViewerModule],
   exports: [
     BigButtonIconComponent,
     ToolbarComponent,
